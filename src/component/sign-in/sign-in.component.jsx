@@ -13,13 +13,13 @@ class SignIn extends Component {
         }
     }
 
-    handlesumbit = event =>{
+    handleSumbit = event =>{
         event.preventDefault();
 
         this.setState({email:"", password:""})
     }
 
-    handlechange = event => {
+    handleChange = event => {
         const {value , name} = event.target;
 
         this.setState({[name]:value})
@@ -33,12 +33,12 @@ class SignIn extends Component {
                  <span>Sing in with your email and password</span>
 
                  <form onSubmit={this.handlesumbit}>
-                     <FormInput name="email" type="email" label="email" value={this.state.email} handlechnage={this.handlechange} required/>
+                     <FormInput name="email" type="email" label="email" value={this.state.email} handleChange={this.handleChange} required/>
                     
-                     <FormInput name="password" label="password" type="password" value={this.state.password}  handlechange={this.handlechange} required/>
+                     <FormInput name="password" label="password" type="password" value={this.state.password}  handleChange={this.handleChange} required/>
                     
 
-                     <CustomButton type="submit">{"Sign In"}</CustomButton>
+                     <CustomButton type="submit">Sign in</CustomButton>
                  </form>
              </div>
         );
