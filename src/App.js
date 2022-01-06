@@ -4,12 +4,35 @@ import ShopPages from "./component/pages/Shoppage/Shop.component";
 import './App.css'
 import Header from './component/header/Header.component';
 import SigninandSignUppage from './component/pages/signin-and-signup/signin-and-singup';
+import { Component } from 'react';
+import { auth } from './firebas/firebas.utils';
+// import firebase from '@firebase/app';
+require('firebase/auth');
 
-function App(){
-  return(
-    <div>
+class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state ={
+      currentUser:null
+    }
+  }
+  unsubscribeFromAuth = null;
+
+  componentDidMount(){
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user =>{
+      this.setState({currentUser:user})
+    })
+  }
+
+  componentWillUnmount(){
+    this.unsubscribeFromAuth();
+  }
+  render() {
+    return (
+      <div>
       <BrowserRouter>
-      <Header/>
+      <Header currentUser={this.state.currentUser}/>
       <Switch>
         <Route exact path="/" component={ Homepage } />
         <Route path="/Shop" component={ShopPages} />
@@ -17,7 +40,10 @@ function App(){
       </Switch>
       </BrowserRouter>
     </div>
-  )
+    );
+  }
+
 }
+
 
 export default App;
