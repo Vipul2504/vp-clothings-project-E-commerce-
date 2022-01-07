@@ -3,6 +3,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign.in.style.scss";
 import { signInWithGoogle } from "../../firebas/firebas.utils";
+import { auth } from "../../firebas/firebas.utils";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -13,11 +14,18 @@ class SignIn extends Component {
     };
   }
 
-  handleSumbit = (event) => {
+  handleSumbit = async (event) => {
     event.preventDefault();
+    const {email, password} = this.state;
 
-    this.setState({ email: "", password: "" });
-  };
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+
+    } catch (error) {
+      console.log(error)
+    }
+     };
 
   handleChange = (event) => {
     const { value, name } = event.target;
@@ -50,7 +58,7 @@ class SignIn extends Component {
           />
           <div className="buttons">
             <CustomButton type="submit"> Sign in </CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn>
               Sign in with Google
             </CustomButton>
           </div>
