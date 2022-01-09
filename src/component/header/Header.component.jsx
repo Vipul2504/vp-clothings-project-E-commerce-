@@ -5,6 +5,7 @@ import { auth } from "../../firebas/firebas.utils";
 import { connect } from "react-redux";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import { createStore, applyMiddleware } from 'redux'; 
 
 const Header = ({currentUser, hidden}) => (
     <div className="header">
@@ -31,6 +32,7 @@ const Header = ({currentUser, hidden}) => (
         }
     </div>
 )
+const store = createStore(() => [], {}, applyMiddleware());
 const mapStatetoProps = ({user:{currentUser},cart:{hidden}}) =>({
     currentUser,
     hidden
