@@ -54,14 +54,17 @@ class App extends Component {
 
 }
 
-// const mapToProps = user => {
-//   console.log(user)
-//  return { currentUser: currentUser}
+// const mapToProps = (state) => {
+//   console.log(state)
+//  return { currentUser: state}
 // }
 
-const mapStateToProps = user  => ({
-  currentUser: this.user.currentUser
-});
+const mapStateToProps = (user)  => {
+  return {
+    currentUser: user.currentUser
+  }
+ 
+};
 
 const mapDispatchToProps = dispatch => ({
   SetCurrentUser: user => dispatch(SetCurrentUser(user))
