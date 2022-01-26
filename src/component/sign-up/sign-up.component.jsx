@@ -89,8 +89,8 @@ class SignUp extends Component {
             label="confirmPassword"
             required
           ></FormInput>
-          <CustomButton type="submit">Sign Up</CustomButton>
         </form>
+          <CustomButton type="submit">Sign Up</CustomButton>
       </div>
     );
   }
