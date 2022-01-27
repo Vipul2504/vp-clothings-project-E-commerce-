@@ -5,7 +5,7 @@ const Cartitem = ({item : {imageUrl, price, name, quantity}}) => (
         <img src={imageUrl} alt="" />
         <div className='item-details'>
             <span className='name'>{name}</span>
-            <span className='price'>{quantity} * ${price}</span>
+            <span className='price'>{quantity} x ${price}</span>
         </div>
     </div>
 )
